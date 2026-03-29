@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Modules\Checkout\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Modules\Catalog\Models\Product;
+
+class CartItem extends Model
+{
+    protected $fillable = [
+        'cart_id',
+        'product_id',
+        'quantity',
+    ];
+
+    public function cart(): BelongsTo
+    {
+        return $this->belongsTo(Cart::class);
+    }
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
+    }
+}
